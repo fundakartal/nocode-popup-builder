@@ -1,0 +1,75 @@
+.hero {
+  background: linear-gradient(180deg, #ffffff 0%, #e3f2f7 100%);
+  &Container {
+    @apply relative w-full pt-20 font-Poppins md:pt-28 lg:max-h-[910px] lg:pt-36;
+  }
+  &Title {
+    @apply max-w-[490px] font-semibold -tracking-wide lg:leading-[80px];
+    font-size: clamp(2rem, -0.875rem + 8.333vw, 4.5rem);
+  }
+  &Subtitle {
+    @apply mt-5 mb-8 max-w-[1128px] tracking-tight lg:mb-[60px] lg:leading-[44px];
+    font-size: clamp(1rem, -0.875rem + 8.333vw, 1.875rem);
+  }
+  &Button {
+    @apply flex h-[60px] w-44 items-center justify-center rounded-lg bg-primary font-Inter font-medium leading-5 text-white drop-shadow-4xl transition duration-300 hover:bg-primary-dark;
+  }
+  &TextInfo {
+    @apply mt-10 mb-9 flex flex-wrap items-center gap-6 opacity-60 lg:mb-[90px];
+  }
+  &Modal {
+    @apply relative flex items-center rounded-xl bg-white lg:h-[468px] lg:w-[800px];
+    &Container {
+      @apply flex h-full w-full flex-col-reverse items-center justify-between md:flex-row;
+    }
+    &Content {
+      @apply flex flex-col items-center justify-center px-12 pt-11;
+    }
+    &Title {
+      @apply mt-8 text-[40px] font-semibold leading-[54px] tracking-tight;
+    }
+    &Subtitle {
+      @apply mt-3 mb-7 max-w-[267px] text-center text-lg leading-[24px] tracking-tight;
+    }
+    &Image {
+      @apply relative flex items-center justify-center overflow-hidden md:rounded-r-xl lg:h-[468px] lg:w-[400px];
+    }
+    &StickyText1 {
+      @apply absolute bottom-5 left-5 max-w-[260px] text-4xl font-semibold tracking-tight text-white md:bottom-[30px] md:left-[30px];
+    }
+    &StickyText2 {
+      @apply absolute top-28 -right-[123px] hidden h-12 w-[182px] select-none items-center justify-center gap-[10px] rounded-xl bg-white md:flex;
+    }
+    &StickyText3 {
+      @apply absolute top-[170px] -right-[195px] hidden h-12 w-[269px] select-none items-center justify-center gap-[10px] rounded-xl bg-white bg-opacity-75 md:flex;
+    }
+    &StickyTextSpan {
+      @apply font-medium leading-6;
+    }
+  }
+  &Form {
+    @apply flex flex-col gap-4;
+    &Container {
+      @apply flex flex-col;
+    }
+    &Input {
+      @apply h-12 w-300 rounded-lg border border-gray-extra-light p-4 placeholder:leading-6 placeholder:text-gray-dark  focus:border-primary;
+    }
+    &Button {
+      @apply grid h-12 w-300 place-content-center rounded-lg bg-black py-4 font-medium text-white transition duration-300 hover:bg-opacity-90;
+    }
+    &Info {
+      @apply max-w-[250px] text-xs leading-[18px] text-gray-dark;
+    }
+  }
+}
+
+.rectangle {
+  @apply absolute bottom-0 left-[627px] hidden h-[315px] w-[500px] rounded-t-[40px] lg:block;
+  background: linear-gradient(
+    239.75deg,
+    rgba(255, 255, 255, 0.7) 1.2%,
+    rgba(255, 255, 255, 0) 70.51%
+  );
+  border-radius: 40px 40px 0px 0px;
+}
