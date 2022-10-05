@@ -1,0 +1,15 @@
+// .modal1 {
+//   @apply relative flex flex-col items-center rounded-xl bg-white py-10;
+//   &Small {
+//     @extend .modal1;
+//     @include modal(480px, 446px, small);
+//   }
+//   &Medium {
+//     @extend .modal1;
+//     @include modal(480px, 446px, medium);
+//   }
+//   &Large {
+//     @extend .modal1;
+//     @include modal(480px, 446px, large);
+//   }
+// }
