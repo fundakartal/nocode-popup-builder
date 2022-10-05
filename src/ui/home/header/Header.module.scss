@@ -1,0 +1,43 @@
+.header {
+  @apply relative z-50;
+  &Container {
+    @apply absolute top-0 flex h-[82px] w-full items-center font-Inter;
+  }
+  &Image {
+    @apply mr-10 flex cursor-pointer items-center justify-center lg:mr-20;
+  }
+  &Span {
+    @apply ml-[10px] font-extrabold;
+  }
+  .menuIcon {
+    @apply absolute right-0 md:hidden;
+  }
+}
+
+.navbar {
+  @apply absolute top-16 h-screen w-full flex-col items-center gap-3 bg-white pb-5 md:static md:flex md:h-auto md:flex-row md:justify-between md:bg-transparent md:pb-0;
+  &Container {
+    @apply flex flex-col items-center justify-center md:flex-row;
+  }
+  &Link {
+    @apply flex h-12 shrink-0 items-center px-2 font-medium tracking-tight lg:px-4;
+  }
+  &Dropdown {
+    @apply relative flex h-12 shrink-0 cursor-pointer flex-col items-center justify-center px-2 lg:px-4;
+    &Link {
+      @apply flex items-center justify-center gap-[5px] font-medium tracking-tight;
+    }
+    &Menu {
+      @apply absolute top-10 mt-2;
+    }
+  }
+  &Right {
+    @apply flex flex-col items-center justify-center gap-3 md:flex-row lg:gap-8;
+    &Link {
+      @apply shrink-0 font-medium tracking-tight;
+    }
+  }
+  &Button {
+    @apply flex h-9 w-32 items-center justify-center rounded-md bg-primary font-medium leading-5 text-white drop-shadow-3xl transition duration-300 hover:bg-primary-dark;
+  }
+}
