@@ -1,3 +1,5 @@
+import TickIcon from './TickIcon';
+
 export { default as CloseIcon } from './CloseIcon';
 export { default as XIcon } from './XIcon';
 export { default as SecurityIcon } from './SecurityIcon';
@@ -36,3 +38,13 @@ export { default as MobileIcon } from './MobileIcon';
 export { default as CheckedRadioIcon } from './CheckedRadioIcon';
 export { default as XIconXS } from './XIconXS';
 export { default as InfoIcon } from './InfoIcon';
+export { default as ConversionIcon } from './ConversionIcon';
+export { default as ModernIcon } from './ModernIcon';
+export { default as TickIcon } from './TickIcon';
+export { default as PlusIcon } from './PlusIcon';
+export { default as MinusIcon } from './MinusIcon';
+export { default as TargetIcon } from './TargetIcon';
+export { default as NoCodeIcon } from './NoCodeIcon';
+export { default as TargetingIcon } from './NoCodeIcon';
+export { default as AwsIcon } from './AwsIcon';
+export { default as PopupsmartIcon } from './PopupsmartIcon';

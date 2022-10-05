@@ -1,0 +1,40 @@
+@mixin modal($width, $height, $size) {
+  width: $width;
+  height: $height;
+  @if $size == small {
+    width: $width * 0.9;
+    height: $height * 0.9;
+  } @else if $size == medium {
+    width: $width;
+    height: $height;
+  } @else if $size == large {
+    width: $width * 1.1;
+    height: $height * 1.1;
+  }
+}
+
+@mixin position($position) {
+  @if $position == Top {
+    align-items: flex-start;
+  } @else if $position == Right {
+    justify-content: flex-end;
+  } @else if $position == Bottom {
+    align-items: flex-end;
+  } @else if $position == Left {
+    justify-content: flex-start;
+  } @else if $position == LeftTop {
+    align-items: flex-start;
+    justify-content: flex-start;
+  } @else if $position == RightTop {
+    align-items: flex-start;
+    justify-content: flex-end;
+  } @else if $position == RightBottom {
+    align-items: flex-end;
+    justify-content: flex-end;
+  } @else if $position == LeftBottom {
+    align-items: flex-end;
+    justify-content: flex-start;
+  } @else {
+    place-items: center;
+  }
+}

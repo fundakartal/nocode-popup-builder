@@ -7,3 +7,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './mixin';
+
+@layer base {
+  input[type='color'] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  ::-webkit-color-swatch-wrapper {
+    @apply p-0;
+  }
+
+  ::-webkit-color-swatch {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  ::-moz-color-swatch,
+  ::-moz-focus-inner {
+    border: 0;
+  }
+
+  ::-moz-focus-inner {
+    padding: 0;
+  }
+}
