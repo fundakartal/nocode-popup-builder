@@ -1,0 +1,6 @@
+.closeButton {
+  @apply absolute right-5 top-5 flex h-9 w-9 items-center justify-center;
+  &Icon {
+    @apply border-none transition duration-300 hover:scale-110;
+  }
+}
