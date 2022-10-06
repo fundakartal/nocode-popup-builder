@@ -50,7 +50,7 @@ const Modal1 = () => {
 
   return (
     <div
-      className={`grid h-full w-full bg-black bg-opacity-5 
+      className={`grid place-items-center h-full w-full bg-black bg-opacity-5 
     ${
       Position === 'Top'
         ? 'items-start'
