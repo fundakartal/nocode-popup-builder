@@ -24,6 +24,7 @@ const AfterScroll = () => {
   const { register, watch, control, reset, getValues, handleSubmit, errors } =
     useForm<FormInputs>({
       schema,
+      defaultValues: {AfterScroll: 20, SetAfterScroll: false}
     });
 
   useEffect(() => {
@@ -56,8 +57,7 @@ const AfterScroll = () => {
         </div>
         <input
           className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
-          type='text'
-          defaultValue={50}
+          type='number'
           disabled={data.get('SetAfterScroll') === false}
           {...register('AfterScroll')}
         />

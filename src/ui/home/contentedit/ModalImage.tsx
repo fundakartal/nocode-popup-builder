@@ -50,7 +50,7 @@ const ModalImage = () => {
 
   return (
     <div>
-      <p className='mb-4 text-sm leading-[18px]'>Upload Image</p>
+      <p className='mb-4 mt-4 text-sm leading-[18px]'>Upload Image</p>
       <div className='flex w-full items-center justify-center'>
         <div
           className='flex h-[178px] w-[378px] cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-[#DDDDDD] transition duration-300 hover:bg-gray-100'

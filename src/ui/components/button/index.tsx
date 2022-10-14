@@ -6,11 +6,20 @@ interface ButtonProps {
   onClick?: (e: any) => void;
   className?: string;
   id?: string;
+  style?: {};
 }
 
-const Button = ({ id, onClick, children, className, type }: ButtonProps) => {
+const Button = ({
+  id,
+  onClick,
+  children,
+  className,
+  type,
+  style,
+}: ButtonProps) => {
   return (
     <button
+      style={style}
       type={type || 'button'}
       className={`${className}`}
       id={id}

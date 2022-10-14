@@ -24,6 +24,7 @@ const AfterXSeconds = () => {
   const { register, watch, control, reset, getValues, handleSubmit, errors } =
     useForm<FormInputs>({
       schema,
+      defaultValues: { SetAfterXSeconds: true, AfterXSeconds: 3 },
     });
 
   useEffect(() => {
@@ -56,7 +57,6 @@ const AfterXSeconds = () => {
         <input
           className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
           type='number'
-          defaultValue={3}
           disabled={data.get('SetAfterXSeconds') === false}
           {...register('AfterXSeconds')}
         />
