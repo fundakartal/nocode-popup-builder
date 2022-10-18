@@ -4,6 +4,7 @@ export interface ModalState {
   id: number;
   isSelected: boolean;
   show: boolean;
+  isCompleted: boolean;
   data: object;
 }
 
@@ -11,6 +12,7 @@ const initialState: ModalState = {
   id: 0,
   isSelected: false,
   show: false,
+  isCompleted: false,
   data: {},
 };
 
@@ -31,8 +33,11 @@ export const modalSlice = createSlice({
     setShow: (state, action: PayloadAction<boolean>) => {
       state.show = action.payload;
     },
+    setIsCompleted: (state, action: PayloadAction<boolean>) => {
+      state.isCompleted = action.payload;
+    },
   },
 });
 
-export const { selectModal, addData, updateData, setShow } = modalSlice.actions;
+export const { selectModal, addData, updateData, setShow, setIsCompleted } = modalSlice.actions;
 export default modalSlice.reducer;

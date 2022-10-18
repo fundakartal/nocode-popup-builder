@@ -63,7 +63,7 @@ const Color = () => {
                 className='h-[42px] w-[42px] '
                 type='color'
                 defaultValue={data.get(color)}
-                {...register(color)}
+                {...register(`${color}` as any)}
               />
             )
         )}

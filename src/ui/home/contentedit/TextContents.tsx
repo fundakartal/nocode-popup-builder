@@ -14,6 +14,10 @@ type FormInputs = {
   Content5?: string;
   Content6?: string;
   Content7?: string;
+  Content8?: string;
+  Content9?: string;
+  Content10?: string;
+  Content11?: string;
 };
 
 const schema = Nope.object().shape({
@@ -24,6 +28,10 @@ const schema = Nope.object().shape({
   Content5: Nope.string(),
   Content6: Nope.string(),
   Content7: Nope.string(),
+  Content8: Nope.string(),
+  Content9: Nope.string(),
+  Content10: Nope.string(),
+  Content11: Nope.string(),
 });
 
 const TextContents = () => {
@@ -33,13 +41,17 @@ const TextContents = () => {
     Object.entries(useSelector((state: RootState) => state.selectedModal.data))
   );
 
-  const TextContents = Object.keys(state.data).filter((v) =>
-    v.startsWith('Content')
-  );
-
-  const { register, watch, handleSubmit, errors } = useForm<FormInputs>({
+  const { register, watch, handleSubmit, reset, errors } = useForm<FormInputs>({
     schema,
   });
+
+  const id = data.get('id');
+  useEffect(() => {
+    const data = state.data;
+    reset({
+      ...data,
+    });
+  }, [id]);
 
   useEffect(() => {
     const subscription = watch((data) => {
@@ -48,21 +60,30 @@ const TextContents = () => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  const onSubmit = (data: FormInputs) => {dispatch(updateData(data));};
+  const inputs: { content: string; value: string }[] = [];
+  Object.keys(state.data)
+    .filter((v) => v.startsWith('Content'))
+    .map((content) => {
+      inputs.push({ content: content, value: data.get(content) });
+    });
+
+  const onSubmit = (data: FormInputs) => {
+    dispatch(updateData(data));
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <p className='mb-4 text-sm leading-[18px]'>Edit your content</p>
       <div className='flex flex-col gap-4'>
-        {TextContents.map(
-          (content, index) =>
-            data.get(content) && (
+        {inputs.map(
+          (input, index) =>
+            data.get(input.content) && (
               <input
                 key={index}
                 className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
                 type='text'
-                defaultValue={data.get(content)}
-                {...register(content)}
+                defaultValue={input.value}
+                {...register(`${input.content}` as any)}
               />
             )
         )}
