@@ -67,9 +67,9 @@ const VisitorDevice = () => {
           <div className=' flex h-12 w-[179px] items-center rounded-xl bg-[#F5F5F5] p-[15px]'>
             <label className='relative flex cursor-pointer py-4 text-sm'>
               <input
-                value='Mobile'
+                value='Desktop'
                 type='radio'
-                checked
+                checked={data.get('DeviceType') === 'Desktop'}
                 disabled={data.get('SetDevice') === false}
                 className='peer mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
                 {...register('DeviceType')}
@@ -92,6 +92,7 @@ const VisitorDevice = () => {
               <input
                 value='Mobile'
                 type='radio'
+                checked={data.get('DeviceType') === 'Mobile'}
                 disabled={data.get('SetDevice') === false}
                 className='peer mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
                 {...register('DeviceType')}

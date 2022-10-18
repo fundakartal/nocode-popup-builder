@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.8.5",
     "@types/react-redux": "^7.1.24",
     "axios": "^1.0.0",
+    "exit-intent": "^1.1.0",
     "next": "12.3.1",
     "nope-validator": "^1.0.4",
     "react": "18.2.0",
