@@ -7,7 +7,10 @@ import { useForm } from '../../../../hooks/useForm';
 import { RootState } from '../../../../app/store';
 import ModalContainer from '../../modalContainer';
 import { useDispatch } from 'react-redux';
-import { setShow } from '../../../../app/slices/selectedModalSlice';
+import {
+  setIsCompleted,
+  setShow,
+} from '../../../../app/slices/selectedModalSlice';
 
 type FormInputs = {
   code: string;
@@ -21,7 +24,6 @@ const Modal1 = () => {
   const data = new Map(
     Object.entries(useSelector((state: RootState) => state.selectedModal.data))
   );
-  const Size = data.get('Size');
   const Content1 = data.get('Content1');
   const Content2 = data.get('Content2');
   const Content3 = data.get('Content3');
@@ -41,22 +43,18 @@ const Modal1 = () => {
       body: JSON.stringify({ data }),
     });
     dispatch(setShow(false));
+    dispatch(setIsCompleted(true));
   };
   const handleModal = () => {
     dispatch(setShow(false));
+    dispatch(setIsCompleted(true));
   };
 
   return (
     <ModalContainer>
       <Modal
         style={{ backgroundColor: Color2 }}
-        className={`relative flex ${
-          Size === 'Small'
-            ? 'h-[440px] w-[420px]'
-            : Size === 'Large'
-            ? 'h-[480px] w-[520px]'
-            : 'h-[446px] w-[480px]'
-        } flex-col items-center rounded-xl bg-white py-10`}
+        className='h-[446px] w-480 bg-white py-10'
       >
         <div className={`grid place-items-center`}>
           <div
@@ -84,20 +82,14 @@ const Modal1 = () => {
               style={{ backgroundColor: Color2, borderColor: Color4 }}
               type='text'
               placeholder={Content3}
-              className={`form-input h-12 ${
-                Size === 'Small'
-                  ? 'w-[300px]'
-                  : Size === 'Large'
-                  ? 'w-[370px]'
-                  : 'w-[350px]'
-              } rounded-lg border border-gray-extra-light p-4 placeholder:leading-5 placeholder:text-black focus:border-primary`}
+              className={`form-input h-12 w-350 rounded-lg border border-gray-extra-light p-4 placeholder:leading-5 placeholder:text-black focus:border-primary`}
               {...register('code')}
             />
             <label className='text-sm leading-7 text-red-600'>
               {errors.code?.message}
             </label>
           </div>
-          <div className='mt-8 flex gap-4'>
+          <div className={`${errors.code ? 'mt-1' : 'mt-8'} flex gap-4`}>
             <Button
               style={{
                 backgroundColor: Color2,
