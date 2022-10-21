@@ -16,7 +16,12 @@ type FormInputs = {
 };
 
 const schema = Nope.object().shape({
-  Color: Nope.string(),
+  Color1: Nope.string(),
+  Color2: Nope.string(),
+  Color3: Nope.string(),
+  Color4: Nope.string(),
+  Color5: Nope.string(),
+  Color6: Nope.string(),
 });
 
 const Color = () => {
@@ -35,10 +40,7 @@ const Color = () => {
   
   const id = data.get('id');
   useEffect(() => {
-    const data = state.data;
-    reset({
-      ...data,
-    });
+    reset();
   }, [id]);
 
   useEffect(() => {

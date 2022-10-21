@@ -45,20 +45,20 @@ const TextContents = () => {
     schema,
   });
 
-  const id = data.get('id');
-  useEffect(() => {
-    const data = state.data;
-    reset({
-      ...data,
-    });
-  }, [id]);
-
   const inputs: { content: string; value: string }[] = [];
   Object.keys(state.data)
     .filter((v) => v.startsWith('Content'))
     .map((content) => {
       inputs.push({ content: content, value: data.get(content) });
     });
+
+  const id = data.get('id');
+  useEffect(
+    () =>
+      reset(),
+    [id]
+  );
+
   useEffect(() => {
     const subscription = watch((data: FormInputs) => {
       dispatch(updateData(data));
