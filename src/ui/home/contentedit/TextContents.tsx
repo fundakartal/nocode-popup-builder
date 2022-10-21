@@ -53,19 +53,18 @@ const TextContents = () => {
     });
   }, [id]);
 
-  useEffect(() => {
-    const subscription = watch((data) => {
-      dispatch(updateData(data));
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
   const inputs: { content: string; value: string }[] = [];
   Object.keys(state.data)
     .filter((v) => v.startsWith('Content'))
     .map((content) => {
       inputs.push({ content: content, value: data.get(content) });
     });
+  useEffect(() => {
+    const subscription = watch((data: FormInputs) => {
+      dispatch(updateData(data));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   const onSubmit = (data: FormInputs) => {
     dispatch(updateData(data));
@@ -75,18 +74,16 @@ const TextContents = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <p className='mb-4 text-sm leading-[18px]'>Edit your content</p>
       <div className='flex flex-col gap-4'>
-        {inputs.map(
-          (input, index) =>
-            data.get(input.content) && (
-              <input
-                key={index}
-                className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
-                type='text'
-                defaultValue={input.value}
-                {...register(`${input.content}` as any)}
-              />
-            )
-        )}
+        {inputs.map((input, index) => (
+          <input
+            required
+            key={index}
+            className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
+            type='text'
+            defaultValue={input.value}
+            {...register(`${input.content}` as any)}
+          />
+        ))}
       </div>
     </form>
   );

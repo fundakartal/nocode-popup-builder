@@ -26,12 +26,13 @@ const Color = () => {
     Object.entries(useSelector((state: RootState) => state.selectedModal.data))
   );
 
-  const Colors = Object.keys(state.data).filter((v) => v.startsWith('Color'));
-
+  
   const { register, watch, handleSubmit, reset, errors } = useForm<FormInputs>({
     schema,
   });
-
+  
+  const Colors = Object.keys(state.data).filter((v) => v.startsWith('Color'));
+  
   const id = data.get('id');
   useEffect(() => {
     const data = state.data;
