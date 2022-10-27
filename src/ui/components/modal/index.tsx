@@ -56,7 +56,7 @@ const Modal = ({ fill, children, className, Home, style }: ModalProps) => {
     <div
       ref={ref}
       style={{ ...style, ...(modalSize as {}) }}
-      className={`relative flex flex-col items-center rounded-xl overflow-hidden ${className}`}
+      className={`relative flex flex-col items-center rounded-xl ${!Home && 'overflow-hidden'} ${className}`}
     >
       {children}
       <div className={styles.closeButton}>

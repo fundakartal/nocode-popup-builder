@@ -1,44 +1,43 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Nope from 'nope-validator';
 import React, { useEffect, useState } from 'react';
-
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateData } from '../../../app/slices/selectedModalSlice';
-import { RootState } from '../../../app/store';
 import { useForm } from '../../../hooks/useForm';
 import { CaretDownIcon, XIconXS } from '../../components/icons';
 
-enum LanguagesEnum {
-  English = 'English',
-  French = 'French',
-  German = 'German',
-  Polish = 'Polish',
-  Dutch = 'Dutch',
-  Finnish = 'Finnish',
-}
-
 type FormInputs = {
   SetLanguages: boolean;
-  BrowserLanguages: LanguagesEnum[];
+  selectAll: boolean;
+  BrowserLanguages: string[];
 };
 
 const schema = Nope.object().shape({
-  SetLanguages: Nope.number(),
+  SetLanguages: Nope.boolean(),
+  selectAll: Nope.boolean(),
 });
 
-const Languages = ['English', 'French', 'German', 'Polish', 'Dutch', 'Finnish'];
+interface languageData {
+  name: string;
+  isChecked: boolean;
+}
+
+const languageData = [
+  { name: 'English', isChecked: false },
+  { name: 'French', isChecked: false },
+  { name: 'German', isChecked: false },
+  { name: 'Polish', isChecked: false },
+  { name: 'Dutch', isChecked: false },
+  { name: 'Finnish', isChecked: false },
+];
 
 const BrowserLanguage = () => {
   const [dropdown, setDropdown] = useState(false);
+  const [languages, setLanguages] = useState(languageData);
   const dispatch = useDispatch();
-  const data = new Map(
-    Object.entries(useSelector((state: RootState) => state.selectedModal.data))
-  );
-
-  const { register, watch, control, reset, getValues, handleSubmit, errors } =
-    useForm<FormInputs>({
-      schema,
-    });
+  const { register, watch, setValue, handleSubmit } = useForm<FormInputs>({
+    schema,
+  });
 
   useEffect(() => {
     const subscription = watch((data) => {
@@ -46,6 +45,36 @@ const BrowserLanguage = () => {
     });
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  useEffect(() => {
+    let names = languages
+      .filter((language) => language.isChecked)
+      .map((languge) => languge.name);
+    setValue('BrowserLanguages', names);
+  }, [languages]);
+
+  const handleChange = (e: {
+    target: { value?: any; name?: any; checked?: any };
+  }) => {
+    const { name, checked, value } = e.target;
+    if (name === 'selectAll') {
+      let tempLanguage = languages.map((language) => {
+        return { ...language, isChecked: checked };
+      });
+      setLanguages(tempLanguage);
+    } else {
+      let tempLanguage = languages.map((language) =>
+        language.name === value ? { ...language, isChecked: checked } : language
+      );
+      setLanguages(tempLanguage);
+    }
+  };
+  const deleteLanguage = (lang: string) => {
+    let tempLanguage = languages.map((language) =>
+      language.name === lang ? { ...language, isChecked: false } : language
+    );
+    setLanguages(tempLanguage);
+  };
 
   const onSubmit = (data: FormInputs) => {
     dispatch(updateData(data));
@@ -71,23 +100,26 @@ const BrowserLanguage = () => {
             </label>
           </div>
 
-          <div className=' relative flex min-h-[36px] w-[378px] items-center justify-between rounded-lg border border-[#DDDDDD] p-[3px] pr-3 text-sm leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'>
+          <div className='relative flex min-h-[36px] w-[378px] items-center justify-between rounded-lg border border-[#DDDDDD] p-[3px] pr-3 text-sm leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'>
             <div>
-              {!data.get('BrowserLanguages') ? (
+              {!languages.some((language) => language?.isChecked) ? (
                 <span className='px-3 text-sm leading-[18px] text-gray-dark'>
                   Select
                 </span>
               ) : (
                 <div className='flex flex-wrap gap-[3px]'>
-                  {data
-                    .get('BrowserLanguages')
-                    .map((lang: string, i: number) => (
+                  {languages
+                    .filter((language) => language?.isChecked)
+                    .map((language, i) => (
                       <p
                         key={i}
-                        className='group flex h-[30px]  items-center gap-[11px] rounded-md bg-[#EAEAEA] pl-4 pr-[9px] hover:border hover:border-red'
+                        className='group flex h-[30px] items-center gap-[11px] rounded-md bg-[#EAEAEA] pl-4 pr-[9px] hover:border hover:border-red'
                       >
-                        {lang}
-                        <span className='grid h-[18px] w-[18px] place-items-center group-hover:rounded-full group-hover:bg-red group-hover:text-white'>
+                        {language.name}
+                        <span
+                          onClick={() => deleteLanguage(language.name)}
+                          className='grid h-[18px] w-[18px] cursor-pointer place-items-center group-hover:rounded-full group-hover:bg-red group-hover:text-white'
+                        >
                           <XIconXS fill='currentColor' />
                         </span>
                       </p>
@@ -107,22 +139,33 @@ const BrowserLanguage = () => {
                   <label className='flex w-full cursor-pointer items-center border-b px-5 py-4 hover:bg-[#F5F5F5]'>
                     <input
                       type='checkbox'
+                      checked={
+                        !languages.some(
+                          (language) => language?.isChecked !== true
+                        )
+                      }
                       className='mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
+                      {...register('selectAll', {
+                        onChange: (e) => handleChange(e),
+                      })}
                     />
                     All Languages
                   </label>
-                  {Languages.map((language, index) => (
+                  {languages.map((language, index) => (
                     <label
                       className=' flex h-8 w-full cursor-pointer items-center px-5 py-1.5 hover:bg-[#F5F5F5]'
                       key={index}
                     >
                       <input
-                        {...register('BrowserLanguages')}
+                        {...register('BrowserLanguages', {
+                          onChange: (e) => handleChange(e),
+                        })}
                         type='checkbox'
-                        value={language}
+                        value={language.name}
+                        checked={language?.isChecked}
                         className='mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-sm font-medium text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
                       />
-                      {language}
+                      {language.name}
                     </label>
                   ))}
                 </div>
