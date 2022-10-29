@@ -23,21 +23,31 @@ interface languageData {
 }
 
 const languageData = [
-  { name: 'English', isChecked: false },
-  { name: 'French', isChecked: false },
-  { name: 'German', isChecked: false },
-  { name: 'Polish', isChecked: false },
-  { name: 'Dutch', isChecked: false },
-  { name: 'Finnish', isChecked: false },
+  { name: 'English', code: 'en', isChecked: true },
+  { name: 'French', code: 'fr', isChecked: false },
+  { name: 'German', code: 'de', isChecked: false },
+  { name: 'Polish', code: 'pl', isChecked: false },
+  { name: 'Dutch', code: 'nl', isChecked: false },
+  { name: 'Finnish', code: 'fi', isChecked: false },
+  { name: 'Swedish', code: 'sv', isChecked: false },
+  { name: 'Turkish', code: 'tr', isChecked: false },
+  { name: 'Italian', code: 'it', isChecked: false },
+  { name: 'Spanish', code: 'es', isChecked: false },
+  { name: 'Portuguese', code: 'pt', isChecked: false },
+  { name: 'Russian', code: 'ru', isChecked: false },
+  { name: 'Chinese', code: 'zh', isChecked: false },
+  { name: 'Japanese', code: 'ja', isChecked: false },
+  { name: 'Korean', code: 'ko', isChecked: false },
 ];
 
 const BrowserLanguage = () => {
   const [dropdown, setDropdown] = useState(false);
   const [languages, setLanguages] = useState(languageData);
   const dispatch = useDispatch();
-  const { register, watch, setValue, handleSubmit } = useForm<FormInputs>({
-    schema,
-  });
+  const { register, watch, setValue, getValues, handleSubmit } =
+    useForm<FormInputs>({
+      schema,
+    });
 
   useEffect(() => {
     const subscription = watch((data) => {
@@ -47,10 +57,11 @@ const BrowserLanguage = () => {
   }, [watch]);
 
   useEffect(() => {
-    let names = languages
+    let languageCodes = languages
       .filter((language) => language.isChecked)
-      .map((languge) => languge.name);
-    setValue('BrowserLanguages', names);
+      .map((languge) => languge.code);
+    setValue('BrowserLanguages', languageCodes);
+    getValues('BrowserLanguages').length === 0 && setValue('selectAll', false);
   }, [languages]);
 
   const handleChange = (e: {
@@ -64,7 +75,7 @@ const BrowserLanguage = () => {
       setLanguages(tempLanguage);
     } else {
       let tempLanguage = languages.map((language) =>
-        language.name === value ? { ...language, isChecked: checked } : language
+        language.code === value ? { ...language, isChecked: checked } : language
       );
       setLanguages(tempLanguage);
     }
@@ -74,6 +85,14 @@ const BrowserLanguage = () => {
       language.name === lang ? { ...language, isChecked: false } : language
     );
     setLanguages(tempLanguage);
+  };
+
+  const deleteAll = () => {
+    let tempLanguage = languages.map((language) => {
+      return { ...language, isChecked: false };
+    });
+    setLanguages(tempLanguage);
+    setValue('selectAll', false);
   };
 
   const onSubmit = (data: FormInputs) => {
@@ -101,10 +120,14 @@ const BrowserLanguage = () => {
           </div>
 
           <div className='relative flex min-h-[36px] w-[378px] items-center justify-between rounded-lg border border-[#DDDDDD] p-[3px] pr-3 text-sm leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'>
-            <div>
+            <div
+              className={`${
+                !getValues('SetLanguages') && 'pointer-events-none opacity-50'
+              }`}
+            >
               {!languages.some((language) => language?.isChecked) ? (
                 <span className='px-3 text-sm leading-[18px] text-gray-dark'>
-                  Select
+                  Select Languages
                 </span>
               ) : (
                 <div className='flex flex-wrap gap-[3px]'>
@@ -127,11 +150,15 @@ const BrowserLanguage = () => {
                 </div>
               )}
             </div>
-            <div onClick={() => setDropdown(!dropdown)}>
+            <button
+              className='disabled:opacity-50'
+              disabled={!getValues('SetLanguages')}
+              onClick={() => setDropdown(!dropdown)}
+            >
               <CaretDownIcon />
-            </div>
+            </button>
 
-            <div className={`absolute right-0 top-full`}>
+            <div className={`absolute right-0 top-full z-50 font-Inter`}>
               {dropdown && (
                 <div
                   className={`mt-2 flex w-[378px] flex-col gap-1 rounded-md border border-[#DDDDDD] bg-white shadow-lg`}
@@ -151,27 +178,48 @@ const BrowserLanguage = () => {
                     />
                     All Languages
                   </label>
-                  {languages.map((language, index) => (
-                    <label
-                      className=' flex h-8 w-full cursor-pointer items-center px-5 py-1.5 hover:bg-[#F5F5F5]'
-                      key={index}
+                  <div className='py-[10px]'>
+                    {languages.map((language, index) => (
+                      <label
+                        className=' flex h-8 w-full cursor-pointer items-center px-5 py-1.5 hover:bg-[#F5F5F5]'
+                        key={index}
+                      >
+                        <input
+                          {...register('BrowserLanguages', {
+                            onChange: (e) => handleChange(e),
+                          })}
+                          type='checkbox'
+                          value={language.code}
+                          checked={language?.isChecked}
+                          className='mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-sm font-medium text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
+                        />
+                        {language.name}
+                      </label>
+                    ))}
+                  </div>
+                  <div className='flex items-center justify-between border-t border-[#EAEAEA] px-5 py-4'>
+                    <button
+                      onClick={deleteAll}
+                      className='text-xs font-semibold'
                     >
-                      <input
-                        {...register('BrowserLanguages', {
-                          onChange: (e) => handleChange(e),
-                        })}
-                        type='checkbox'
-                        value={language.name}
-                        checked={language?.isChecked}
-                        className='mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-sm font-medium text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
-                      />
-                      {language.name}
-                    </label>
-                  ))}
+                      Clear Selected Languages
+                    </button>
+                    <button
+                      onClick={() => setDropdown(!dropdown)}
+                      className='text-xs'
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
           </div>
+          <p className='mt-1.5 text-sm text-red'>
+            {getValues('BrowserLanguages')?.length === 0 &&
+              getValues('SetLanguages') &&
+              'Please select at least one language'}
+          </p>
         </div>
       </form>
     </div>
