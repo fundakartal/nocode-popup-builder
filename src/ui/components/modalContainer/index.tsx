@@ -23,6 +23,8 @@ const ModalContainer = ({ children }: ModalContainerProps) => {
   const SetDevice: boolean = data.get('SetDevice');
   const DeviceType: string = data.get('DeviceType');
   const ExitIntent: boolean = data.get('ExitIntent');
+  const SetLanguages: boolean = data.get('SetLanguages');
+  const selectedLanguages: string[] = data.get('BrowserLanguages');
   const scroll: number = useScrollPercentage();
   const { show, isCompleted } = useSelector(
     (state: RootState) => state.selectedModal
@@ -99,10 +101,15 @@ const ModalContainer = ({ children }: ModalContainerProps) => {
     visibility = 'grid';
   }
 
+  // Get browser language and check if the browser language is within the selected languages or setlanguages is false.
+  const browserLanguage = window.navigator.language.substring(0, 2);
+  const checkLanguage =
+    selectedLanguages.includes(browserLanguage) || SetLanguages === false;
+
   return (
     <div
       className={`h-full w-full place-items-center bg-black bg-opacity-5 ${
-        show ? visibility : 'hidden'
+        show && checkLanguage ? visibility : 'hidden'
       } ${position}`}
     >
       {children}
