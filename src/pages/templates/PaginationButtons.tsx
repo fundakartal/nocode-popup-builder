@@ -1,14 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setCurrentPage,
-  setModalPerPage,
-} from '../../../app/slices/paginationSlice';
-import { RootState } from '../../../app/store';
-
-import useWindowDimensions from '../../../hooks/useWindowDimensions ';
-import Button from '../../components/button';
-import { ChevronLeftIcon, ChevronRightIcon } from '../../components/icons';
+import { setCurrentPage, setModalPerPage } from '../../app/slices/paginationSlice';
+import { RootState } from '../../app/store';
+import useWindowDimensions from '../../hooks/useWindowDimensions ';
+import Button from '../../ui/components/button';
+import { ChevronLeftIcon, ChevronRightIcon } from '../../ui/components/icons';
 
 const PaginationButtons = () => {
   const dimensions = useWindowDimensions();
