@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ModalState {
-  id: number;
   isSelected: boolean;
   show: boolean;
   isCompleted: boolean;
@@ -9,7 +8,6 @@ export interface ModalState {
 }
 
 const initialState: ModalState = {
-  id: 0,
   isSelected: false,
   show: false,
   isCompleted: false,
@@ -20,11 +18,8 @@ export const modalSlice = createSlice({
   name: 'selectedModal',
   initialState,
   reducers: {
-    selectModal: (state, action: PayloadAction<number>) => {
-      state.id = action.payload;
-      state.isSelected = true;
-    },
     addData: (state, action: PayloadAction<object>) => {
+      state.isSelected = true;
       state.data = action.payload;
     },
     updateData: (state, action: PayloadAction<object>) => {
@@ -39,5 +34,6 @@ export const modalSlice = createSlice({
   },
 });
 
-export const { selectModal, addData, updateData, setShow, setIsCompleted } = modalSlice.actions;
+export const { addData, updateData, setShow, setIsCompleted } =
+  modalSlice.actions;
 export default modalSlice.reducer;
