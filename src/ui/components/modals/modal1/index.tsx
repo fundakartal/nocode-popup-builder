@@ -54,7 +54,7 @@ const Modal1 = () => {
     <ModalContainer>
       <Modal
         style={{ backgroundColor: Color2 }}
-        className='h-[446px] w-480 bg-white py-10'
+        className='h-[446px] w-full max-w-[480px] bg-white py-10'
       >
         <div className={`grid place-items-center`}>
           <div
@@ -65,24 +65,24 @@ const Modal1 = () => {
           </div>
           <h1
             style={{ color: Color1 }}
-            className={`mt-7 mb-4 text-3xl font-bold leading-9 text-black`}
+            className={`mt-7 mb-4 text-2xl md:text-3xl font-bold leading-9 text-black`}
           >
             {Content1}
           </h1>
           <h2
             style={{ color: Color1 }}
-            className={`mb-10 text-xl leading-6 text-black`}
+            className={`mb-10 text-center text-lg md:text-xl leading-6 text-black`}
           >
             {Content2}
           </h2>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className='w-[90%] max-w-[350px]' onSubmit={handleSubmit(onSubmit)}>
           <div className='flex flex-col'>
             <input
               style={{ backgroundColor: Color2, borderColor: Color4 }}
               type='text'
               placeholder={Content3}
-              className={`form-input h-12 w-350 rounded-lg border border-gray-extra-light p-4 placeholder:leading-5 placeholder:text-black focus:border-primary`}
+              className={`form-input h-12 rounded-lg border border-gray-extra-light p-4 placeholder:leading-5 placeholder:text-black focus:border-primary`}
               {...register('code')}
             />
             <label className='text-sm leading-7 text-red-600'>
