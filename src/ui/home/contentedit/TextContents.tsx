@@ -78,7 +78,7 @@ const TextContents = () => {
           <input
             required
             key={index}
-            className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
+            className='h-9 max-w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
             type='text'
             defaultValue={input.value}
             {...register(`${input.content}` as any)}

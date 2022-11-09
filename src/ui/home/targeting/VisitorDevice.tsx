@@ -64,7 +64,7 @@ const VisitorDevice = () => {
           </label>
         </div>
         <div className='flex items-center justify-between'>
-          <div className=' flex h-12 w-[179px] items-center rounded-xl bg-[#F5F5F5] p-[15px]'>
+          <div className=' flex h-12 max-w-[179px] grow items-center rounded-xl bg-[#F5F5F5] p-[15px]'>
             <label className='relative flex cursor-pointer py-4 text-sm'>
               <input
                 value='Desktop'
@@ -87,7 +87,7 @@ const VisitorDevice = () => {
               </div>
             </label>
           </div>
-          <div className='flex h-12 w-[179px] items-center rounded-xl bg-[#F5F5F5] p-[15px]'>
+          <div className='flex h-12 max-w-[179px] grow items-center rounded-xl bg-[#F5F5F5] p-[15px]'>
             <label className='relative flex cursor-pointer py-4 text-sm'>
               <input
                 value='Mobile'

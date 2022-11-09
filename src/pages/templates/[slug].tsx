@@ -27,14 +27,14 @@ const EditModal = () => {
   return (
     <>
       <Container className='relative '>
-        <div className='my-[90px] flex w-full justify-between font-Inter lg:mt-40'>
-          <div className='flex w-[378px] flex-col gap-[90px]'>
+        <div className='my-[90px] flex flex-col md:flex-row w-full justify-between font-Inter lg:mt-40'>
+          <div className='flex max-w-[378px] flex-col gap-[90px]'>
             <Appearance />
             <Content />
             <Targeting />
             <GetCode />
           </div>
-          <div className='sticky top-0 flex h-screen w-[740px] items-center justify-center border drop-shadow-5xl'>
+          <div className='sticky top-0 flex h-screen w-full md:w-[740px] items-center justify-center border drop-shadow-5xl'>
             <button
               className='absolute -top-6 right-0 text-gray-dark'
               onClick={() => dispatch(setShow(!show))}

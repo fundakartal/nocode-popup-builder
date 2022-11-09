@@ -119,7 +119,7 @@ const BrowserLanguage = () => {
             </label>
           </div>
 
-          <div className='relative flex min-h-[36px] w-[378px] items-center justify-between rounded-lg border border-[#DDDDDD] p-[3px] pr-3 text-sm leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'>
+          <div className='relative flex min-h-[36px] max-w-[378px] items-center justify-between rounded-lg border border-[#DDDDDD] p-[3px] pr-3 text-sm leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'>
             <div
               className={`${
                 !getValues('SetLanguages') && 'pointer-events-none opacity-50'
@@ -158,10 +158,10 @@ const BrowserLanguage = () => {
               <CaretDownIcon />
             </button>
 
-            <div className={`absolute right-0 top-full z-50 font-Inter`}>
+            <div className={`absolute w-full right-0 top-full z-50 font-Inter`}>
               {dropdown && (
                 <div
-                  className={`mt-2 flex w-[378px] flex-col gap-1 rounded-md border border-[#DDDDDD] bg-white shadow-lg`}
+                  className={`mt-2 flex max-w-[378px] flex-col gap-1 rounded-md border border-[#DDDDDD] bg-white shadow-lg`}
                 >
                   <label className='flex w-full cursor-pointer items-center border-b px-5 py-4 hover:bg-[#F5F5F5]'>
                     <input
@@ -202,7 +202,7 @@ const BrowserLanguage = () => {
                       onClick={deleteAll}
                       className='text-xs font-semibold'
                     >
-                      Clear Selected Languages
+                      Clear
                     </button>
                     <button
                       onClick={() => setDropdown(!dropdown)}

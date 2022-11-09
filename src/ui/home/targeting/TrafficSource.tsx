@@ -55,7 +55,7 @@ const TrafficSource = () => {
           </label>
         </div>
         <input
-          className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] placeholder:text-sm placeholder:leading-[18px] placeholder:text-gray-dark focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
+          className='h-9 max-w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] placeholder:text-sm placeholder:leading-[18px] placeholder:text-gray-dark focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
           type='text'
           placeholder='Enter your traffic source domain'
           disabled={data.get('SetTrafficSource') === false}

@@ -72,7 +72,7 @@ const CreateCode = () => {
 
         <div className='flex flex-col gap-4'>
           <input
-            className='h-9 w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
+            className='h-9 max-w-[378px] rounded-lg border border-[#DDDDDD] text-[14px] leading-[18px] focus:border-[3px] focus:border-primary focus:border-opacity-[0.15] focus:ring-primary'
             type='text'
             placeholder='Your Webhook URL'
             {...register('WebhookURL')}
