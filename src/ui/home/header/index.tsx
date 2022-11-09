@@ -15,10 +15,18 @@ const Header = () => {
   return (
     <Container className={styles.header}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerImage}>
-          <Image src='/logo.svg' alt='' width={36} height={36} layout='fixed' />
-          <span className={styles.headerSpan}>modal.cards</span>
-        </div>
+        <Link href='/'>
+          <div className={styles.headerImage}>
+            <Image
+              src='/logo.svg'
+              alt=''
+              width={36}
+              height={36}
+              layout='fixed'
+            />
+            <span className={styles.headerSpan}>modal.cards</span>
+          </div>
+        </Link>
 
         <Button className={styles.menuIcon} onClick={handleClick}>
           {click ? <XMarkIcon /> : <MenuIcon />}
@@ -53,7 +61,9 @@ const Header = () => {
             <div className={styles.navbarRightLink}>
               <Link href='/'>Sign in</Link>
             </div>
-            <Button className={styles.navbarButton}>Try for free</Button>
+            <Link href='/templates'>
+              <div className={styles.navbarButton}>Try for free</div>
+            </Link>
           </div>
         </nav>
       </div>

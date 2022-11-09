@@ -38,6 +38,6 @@
     }
   }
   &Button {
-    @apply flex h-9 w-32 items-center justify-center rounded-md bg-primary font-medium leading-5 text-white drop-shadow-3xl transition duration-300 hover:bg-primary-dark;
+    @apply flex h-9 w-32 items-center justify-center rounded-md bg-primary font-medium leading-5 text-white drop-shadow-3xl transition duration-300 hover:bg-primary-dark cursor-pointer;
   }
 }

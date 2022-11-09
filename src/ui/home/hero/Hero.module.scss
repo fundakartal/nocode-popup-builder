@@ -12,13 +12,13 @@
     font-size: clamp(1rem, -0.875rem + 8.333vw, 1.875rem);
   }
   &Button {
-    @apply flex h-[60px] w-44 items-center justify-center rounded-lg bg-primary font-Inter font-medium leading-5 text-white drop-shadow-4xl transition duration-300 hover:bg-primary-dark;
+    @apply flex h-[60px] w-44 cursor-pointer items-center justify-center rounded-lg bg-primary font-Inter font-medium leading-5 text-white drop-shadow-4xl transition duration-300 hover:bg-primary-dark;
   }
   &TextInfo {
     @apply mt-10 mb-9 flex flex-wrap items-center gap-6 opacity-60 lg:mb-[90px];
   }
   &Modal {
-    @apply relative flex items-center mb-9 md:mb-0 rounded-xl bg-white lg:h-[468px] lg:w-[800px];
+    @apply relative mb-9 flex items-center rounded-xl bg-white md:mb-0 lg:h-[468px] lg:w-[800px];
     &Container {
       @apply flex h-full w-full flex-col-reverse items-center justify-between md:flex-row;
     }

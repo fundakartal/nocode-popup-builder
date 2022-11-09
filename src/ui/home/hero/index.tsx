@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import Button from '../../components/button';
 import Container from '../../components/container';
@@ -45,7 +46,9 @@ const Hero = () => {
             text-center and rotate-90 that can becomposed to build any design,
             directly in your markup.
           </h2>
-          <Button className={styles.heroButton}>Try it out now</Button>
+          <Link href='/templates'>
+            <div className={styles.heroButton}>Try it out now</div>
+          </Link>
 
           <div className={styles.heroTextInfo}>
             <TextInfo text='Free and paid plans' />
