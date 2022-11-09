@@ -19,6 +19,7 @@ const GetCode = () => {
   const { register, watch, control, reset, getValues, handleSubmit, errors } =
     useForm<FormInputs>({
       schema,
+      defaultValues: {ExitIntent: true}
     });
 
   useEffect(() => {
@@ -42,7 +43,6 @@ const GetCode = () => {
           <label className='relative inline-flex cursor-pointer items-center'>
             <input
               type='checkbox'
-              defaultValue='false'
               className='peer sr-only'
               {...register('ExitIntent')}
             />

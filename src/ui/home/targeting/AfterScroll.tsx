@@ -21,10 +21,10 @@ const AfterScroll = () => {
     Object.entries(useSelector((state: RootState) => state.selectedModal.data))
   );
 
-  const { register, watch, control, reset, getValues, handleSubmit, errors } =
+  const { register, watch, handleSubmit, errors } =
     useForm<FormInputs>({
       schema,
-      defaultValues: {AfterScroll: 20, SetAfterScroll: false}
+      defaultValues: {AfterScroll: 50, SetAfterScroll: true}
     });
 
   useEffect(() => {
