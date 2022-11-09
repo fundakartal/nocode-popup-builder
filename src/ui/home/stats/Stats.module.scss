@@ -1,5 +1,5 @@
 .stats {
-  @apply bg-[#666666] font-Poppins lg:min-h-[630px];
+  @apply bg-[#666666] font-Poppins lg:min-h-[630px] mb-[90px];
   &Container {
     @apply flex w-full flex-col items-center gap-10 py-16 text-white md:flex-row md:items-start lg:gap-[120px] lg:pt-[361px];
   }
