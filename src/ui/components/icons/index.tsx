@@ -48,3 +48,5 @@ export { default as NoCodeIcon } from './NoCodeIcon';
 export { default as TargetingIcon } from './NoCodeIcon';
 export { default as AwsIcon } from './AwsIcon';
 export { default as PopupsmartIcon } from './PopupsmartIcon';
+export { default as EyeSlashIcon } from './EyeSlashIcon';
+export { default as EyeIconLight } from './EyeIconLight';
