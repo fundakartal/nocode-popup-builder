@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setShow } from '../../../app/slices/selectedModalSlice';
@@ -102,9 +102,13 @@ const ModalContainer = ({ children }: ModalContainerProps) => {
   }
 
   // Get browser language and check if the browser language is within the selected languages or setlanguages is false.
-  const browserLanguage = window.navigator.language.substring(0, 2);
+  const [browserLanguage, setBrowserLanguage] = useState('');
+  useEffect(() => {
+    setBrowserLanguage(window.navigator.language.substring(0, 2));
+  }, []);
+
   const checkLanguage =
-    selectedLanguages.includes(browserLanguage) || SetLanguages === false;
+    selectedLanguages?.includes(browserLanguage) || SetLanguages === false;
 
   return (
     <div

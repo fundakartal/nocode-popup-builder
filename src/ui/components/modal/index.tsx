@@ -1,7 +1,10 @@
 import { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setIsCompleted, setShow } from '../../../app/slices/selectedModalSlice';
+import {
+  setIsCompleted,
+  setShow,
+} from '../../../app/slices/selectedModalSlice';
 import { CloseIcon, XIcon } from '../icons';
 import { RootState } from '../../../app/store';
 import useMeasure from '../../../hooks/useMeasure';
@@ -56,7 +59,9 @@ const Modal = ({ fill, children, className, Home, style }: ModalProps) => {
     <div
       ref={ref}
       style={{ ...style, ...(modalSize as {}) }}
-      className={`relative flex flex-col items-center rounded-xl ${!Home && 'overflow-hidden'} ${className}`}
+      className={`relative flex flex-col items-center rounded-xl ${
+        !Home && 'overflow-hidden'
+      } ${className}`}
     >
       {children}
       <div className={styles.closeButton}>

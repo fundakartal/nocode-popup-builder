@@ -14,17 +14,21 @@ type FormInputs = {
 };
 
 const schema = Nope.object().shape({
-  WebhookURL: Nope.string(),
+  WebhookURL: Nope.string()
+    .url('URL is not valid')
+    .required('Please enter a valid URL'),
   isFormSubmission: Nope.boolean(),
   isClickData: Nope.boolean(),
 });
 
 const CreateCode = () => {
+  const { ...state } = useSelector((state: RootState) => state.selectedModal);
+  const data = new Map(Object.entries(state.data));
+  const id = data.get('id');
   const [show, setShow] = useState(false);
   const [buttonText, setButtonText] = useState('Copy the code');
-  const { ...state } = useSelector((state: RootState) => state.selectedModal);
   const dispatch = useDispatch();
-  const { register, watch, handleSubmit, reset, errors } = useForm<FormInputs>({
+  const { register, watch, handleSubmit, errors } = useForm<FormInputs>({
     schema,
   });
 
@@ -39,9 +43,7 @@ const CreateCode = () => {
   <script>
       window.__INITIAL_DATA__ = ${JSON.stringify(state.data)}
   </script>
-  <script type="module" src="https://fk-modal-card-generator.vercel.app/modal${
-    state.id
-  }/index.js"></script>`;
+  <script type="module" src="https://fk-modal-card-generator.vercel.app/modal${id}/index.js"></script>`;
 
   const onSubmit = () => {
     setShow(true);
@@ -75,6 +77,7 @@ const CreateCode = () => {
             placeholder='Your Webhook URL'
             {...register('WebhookURL')}
           />
+          <p className='text-sm text-red'>{errors.WebhookURL?.message}</p>
           <label className='text-sm leading-[18px]'>
             <input
               className='peer mr-[10px] h-[18px] w-[18px] cursor-pointer rounded border-[#999999] text-primary focus:ring-0 disabled:cursor-auto disabled:text-gray '
