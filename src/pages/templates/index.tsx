@@ -1,7 +1,7 @@
-import ModalItem from './ModalItem';
-import PaginationButtons from './PaginationButtons';
-import Header from './Header';
 import Container from '../../ui/components/container';
+import Header from '../../ui/home/templates/Header';
+import ModalItem from '../../ui/home/templates/ModalItem';
+import PaginationButtons from '../../ui/home/templates/PaginationButtons';
 
 const SelectModal = () => {
   return (

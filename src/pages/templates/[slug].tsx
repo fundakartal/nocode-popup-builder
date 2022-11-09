@@ -4,7 +4,7 @@ import Appearance from '../../ui/home/appearance';
 import Content from '../../ui/home/contentedit';
 import GetCode from '../../ui/home/getcode';
 import Targeting from '../../ui/home/targeting';
-import ErrorBoundary from './ErrorBoundary';
+import ErrorBoundary from '../../ui/home/templates/ErrorBoundary';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { EyeIconLight, EyeSlashIcon } from '../../ui/components/icons';

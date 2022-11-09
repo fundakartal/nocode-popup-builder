@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { ModalItems } from './ModalInitial';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
-import { addData } from '../../app/slices/selectedModalSlice';
 import Link from 'next/link';
+import { RootState } from '../../../app/store';
+import { addData } from '../../../app/slices/selectedModalSlice';
 
 const ModalItem = () => {
   const dispatch = useDispatch();
